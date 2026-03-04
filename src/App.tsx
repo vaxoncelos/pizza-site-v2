@@ -204,33 +204,36 @@ function HeroSection({
   const t = translations[language];
 
   useLayoutEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(contentRef.current,
         { y: 60, opacity: 0 },
         { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.3 }
       );
 
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=3%',
-          pin: true,
-          pinSpacing: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-        }
-      });
+      // Only pin on desktop — pinning breaks mobile touch scrolling
+      if (!isMobile) {
+        const scrollTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: '+=3%',
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+          }
+        });
 
-      scrollTl.fromTo(contentRef.current,
-        { y: 0, opacity: 1 },
-        { y: '-10vh', opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-
+        scrollTl.fromTo(contentRef.current,
+          { y: 0, opacity: 1 },
+          { y: '-10vh', opacity: 0, ease: 'power2.in' },
+          0.7
+        );
+      }
     }, sectionRef);
 
-    // Refresh ScrollTrigger after initial render
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
@@ -911,7 +914,7 @@ function App() {
   }, []);
 
   return (
-    <div className="relative bg-wood-primary min-h-screen cursor-none">
+    <div className="relative bg-wood-primary min-h-screen md:cursor-none">
       {/* Smooth Cursor */}
       <SmoothCursor />
 
