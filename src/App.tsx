@@ -362,20 +362,24 @@ function MenuEmbedSection({ t }: { t: TranslationCopy }) {
   const [activeLocation, setActiveLocation] = useState<'funchal' | 'machico'>('funchal');
 
   useLayoutEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(sectionRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
+      if (!isMobile) {
+        gsap.fromTo(sectionRef.current,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 80%',
+            }
           }
-        }
-      );
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -490,14 +494,7 @@ function LocationsSection({ t }: { t: TranslationCopy }) {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     const ctx = gsap.context(() => {
-      if (isMobile) {
-        gsap.fromTo(cardsRef.current,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
-          }
-        );
-      } else {
+      if (!isMobile) {
         const scrollTl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -643,14 +640,7 @@ function WhyChooseSection({ t }: { t: TranslationCopy }) {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     const ctx = gsap.context(() => {
-      if (isMobile) {
-        gsap.fromTo(itemsRef.current,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
-          }
-        );
-      } else {
+      if (!isMobile) {
         const scrollTl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -702,14 +692,7 @@ function TestimonialsSection({ t }: { t: TranslationCopy }) {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     const ctx = gsap.context(() => {
-      if (isMobile) {
-        gsap.fromTo(cardsRef.current,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power2.out',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
-          }
-        );
-      } else {
+      if (!isMobile) {
         const scrollTl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
