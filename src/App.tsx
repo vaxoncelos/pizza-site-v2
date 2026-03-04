@@ -487,20 +487,30 @@ function LocationsSection({ t }: { t: TranslationCopy }) {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          end: 'top 30%',
-          scrub: 0.6,
-        }
-      });
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-      scrollTl.fromTo(cardsRef.current,
-        { y: 80, opacity: 0 },
-        { y: 0, opacity: 1, ease: 'none', stagger: 0.1 }
-      );
+    const ctx = gsap.context(() => {
+      if (isMobile) {
+        gsap.fromTo(cardsRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
+          }
+        );
+      } else {
+        const scrollTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            end: 'top 30%',
+            scrub: 0.6,
+          }
+        });
+        scrollTl.fromTo(cardsRef.current,
+          { y: 80, opacity: 0 },
+          { y: 0, opacity: 1, ease: 'none', stagger: 0.1 }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -630,20 +640,30 @@ function WhyChooseSection({ t }: { t: TranslationCopy }) {
   ];
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          end: 'top 30%',
-          scrub: 0.6,
-        }
-      });
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-      scrollTl.fromTo(itemsRef.current,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, ease: 'none', stagger: 0.08 }
-      );
+    const ctx = gsap.context(() => {
+      if (isMobile) {
+        gsap.fromTo(itemsRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
+          }
+        );
+      } else {
+        const scrollTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            end: 'top 30%',
+            scrub: 0.6,
+          }
+        });
+        scrollTl.fromTo(itemsRef.current,
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, ease: 'none', stagger: 0.08 }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -679,20 +699,30 @@ function TestimonialsSection({ t }: { t: TranslationCopy }) {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          end: 'top 30%',
-          scrub: 0.6,
-        }
-      });
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-      scrollTl.fromTo(cardsRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, ease: 'none', stagger: 0.08 }
-      );
+    const ctx = gsap.context(() => {
+      if (isMobile) {
+        gsap.fromTo(cardsRef.current,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power2.out',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
+          }
+        );
+      } else {
+        const scrollTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            end: 'top 30%',
+            scrub: 0.6,
+          }
+        });
+        scrollTl.fromTo(cardsRef.current,
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, ease: 'none', stagger: 0.08 }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
