@@ -1,0 +1,92 @@
+/* App-specific styles */
+
+/* Hide default cursor for custom cursor */
+* {
+  cursor: none !important;
+}
+
+/* Keep text cursor for inputs */
+input,
+textarea,
+select {
+  cursor: text !important;
+}
+
+/* Ensure smooth scrolling behavior */
+html {
+  scroll-behavior: auto;
+}
+
+/* Hide scrollbar but keep functionality */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1A120B;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #3E2723;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #D4A017;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(212, 160, 23, 0.3);
+  color: #F5E6C8;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid #D4A017;
+  outline-offset: 2px;
+}
+
+/* Prevent text selection on decorative elements */
+.slice-decoration {
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Smooth image transitions */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[src=""] {
+  opacity: 0;
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  .font-display {
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-wheat {
+    color: #F5E6C8;
+  }
+  
+  .btn-primary {
+    border-width: 2px;
+  }
+}
