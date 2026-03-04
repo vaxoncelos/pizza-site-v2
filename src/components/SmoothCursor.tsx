@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { FC } from "react"
 import { motion, useSpring } from "framer-motion"
 
@@ -60,6 +60,16 @@ export function SmoothCursor({
     restDelta: 0.001,
   },
 }: SmoothCursorProps) {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.matchMedia("(max-width: 768px)").matches || "ontouchstart" in window)
+    check()
+    const mql = window.matchMedia("(max-width: 768px)")
+    mql.addEventListener("change", check)
+    return () => mql.removeEventListener("change", check)
+  }, [])
+
   const lastMousePos = useRef<Position>({ x: 0, y: 0 })
   const velocity = useRef<Position>({ x: 0, y: 0 })
   const lastUpdateTime = useRef(Date.now())
@@ -80,6 +90,8 @@ export function SmoothCursor({
   })
 
   useEffect(() => {
+    if (isMobile) return
+
     const updateVelocity = (currentPos: Position) => {
       const currentTime = Date.now()
       const deltaTime = currentTime - lastUpdateTime.current
@@ -146,7 +158,9 @@ export function SmoothCursor({
       document.body.style.cursor = "auto"
       if (rafId) cancelAnimationFrame(rafId)
     }
-  }, [cursorX, cursorY, rotation, scale])
+  }, [cursorX, cursorY, rotation, scale, isMobile])
+
+  if (isMobile) return null
 
   return (
     <motion.div
