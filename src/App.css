@@ -1,17 +1,15 @@
 /* App-specific styles */
 
-/* Hide default cursor for custom cursor - desktop only */
-@media (min-width: 769px) {
-  * {
-    cursor: none !important;
-  }
+/* Hide default cursor for custom cursor */
+* {
+  cursor: none !important;
+}
 
-  /* Keep text cursor for inputs */
-  input,
-  textarea,
-  select {
-    cursor: text !important;
-  }
+/* Keep text cursor for inputs */
+input,
+textarea,
+select {
+  cursor: text !important;
 }
 
 /* Ensure smooth scrolling behavior */
