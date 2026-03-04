@@ -751,7 +751,7 @@ function StickyCTA({ t }: { t: TranslationCopy }) {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-wood-primary/95 backdrop-blur-sm border-t border-cream/10 z-[200] px-6 py-4">
+    <div className="hidden sm:block fixed bottom-0 left-0 right-0 bg-wood-primary/95 backdrop-blur-sm border-t border-cream/10 z-[200] px-6 py-4">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-center sm:text-left">
           <p className="text-cream font-display text-lg uppercase">{t.readyToOrder}</p>
